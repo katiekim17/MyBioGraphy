@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DiaryActivity">
+
+    <TextView
+        android:id="@+id/diary_today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="358dp"
+        />
+
+    <EditText
+        android:id="@+id/inputDiary"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/cameraBtn"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:text="카메라" />
+
+    <Button
+        android:id="@+id/diary_saveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="저장" />
+</LinearLayout>

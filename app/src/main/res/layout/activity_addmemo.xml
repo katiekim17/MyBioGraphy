@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddmemoActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/weekend_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:id="@+id/memoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메모장" />
+
+        <Button
+            android:id="@+id/memoDelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="삭제"
+            app:backgroundTint="#00BCD4" />
+
+        <Button
+            android:id="@+id/memoAddBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="저장"
+            app:backgroundTint="#FFC107" />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/memoTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Title:" />
+
+        <EditText
+            android:id="@+id/editMemoTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="15"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/memoDateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="5"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editMemoText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:ems="10"
+        android:hint="내용을 입력하세요"
+        android:inputType="textPersonName" />
+
+</LinearLayout>

@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mybiography">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 앱 내부에서 카메라에서 촬영중인 화면을 띄워주고 싶을 때 -->
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,16 +16,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyBioGraphy">
-        <!--     스플래시 액티비티   -->
-        <activity android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"></action>
-                <category android:name="android.intent.category.LAUNCHER"></category>
-            </intent-filter>
-        </activity>
+        <activity android:name=".AddJobActivity"></activity>
+        <activity android:name=".WeekendActivity" />
+        <activity android:name=".AddmemoActivity" />
+        <activity android:name=".MemoActivity" />
+        <activity android:name=".DiaryActivity" /> <!-- <activity -->
+        <!-- android:name=".LoginActivity" -->
+        <!-- android:label="@string/title_activity_login" -->
+        <!-- android:theme="@style/Theme.MyBioGraphy.NoActionBar"> -->
+        <!-- </activity> -->
+        <!-- 스플래시 액티비티 -->
+        <!-- <activity -->
+        <!-- android:name=".SplashActivity" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@style/SplashTheme"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity android:name=".MainActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".CalendarActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
