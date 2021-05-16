@@ -12,4 +12,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_calendar">MainActivity</string>
     <string name="title_activity_memo2">MainActivity</string>
+
+    <string name="kakao_app_key">b0a08e3c340f4f4c2aae32b4c2cfb438</string>
 </resources>

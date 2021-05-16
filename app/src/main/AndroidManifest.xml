@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mybiography">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 앱 내부에서 카메라에서 촬영중인 화면을 띄워주고 싶을 때 -->
+    <!-- 인터넷 사용 권한 설정_카카오톡 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature
         android:name="android.hardware.camera2"
         android:required="true" />
 
     <application
+        android:name=".KakaoAppilcation"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyBioGraphy">
-        <activity android:name=".AddJobActivity"></activity>
-        <activity android:name=".WeekendActivity" />
+        android:theme="@style/Theme.MyBioGraphy"
+        tools:ignore="Instantiatable">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/circlebackground" />
+        <!-- 카카오톡 -->
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" /> <!-- 스플래시 액티비티 -->
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+
+            <!-- android:screenOrientation="portrait" -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FindpwActivity" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".AddJobActivity" />
+        <activity android:name=".WeeklyActivity" />
         <activity android:name=".AddmemoActivity" />
         <activity android:name=".MemoActivity" />
         <activity android:name=".DiaryActivity" /> <!-- <activity -->
@@ -25,18 +51,15 @@
         <!-- android:label="@string/title_activity_login" -->
         <!-- android:theme="@style/Theme.MyBioGraphy.NoActionBar"> -->
         <!-- </activity> -->
-        <!-- 스플래시 액티비티 -->
-        <!-- <activity -->
-        <!-- android:name=".SplashActivity" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:theme="@style/SplashTheme"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
         <activity android:name=".MainActivity">
 
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".CalendarActivity" />
+        <activity android:name=".LoginActivity"> <!-- 로그인후 메인화면으로 넘거가기 -->
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
 
@@ -44,12 +67,17 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".CalendarActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
+                <data
+                    android:host="oauth"
+                    android:scheme="kakaob0a08e3c340f4f4c2aae32b4c2cfb438" />
             </intent-filter>
         </activity>
     </application>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_marginRight="10dp"
+    android:orientation="horizontal">
 
 
     <com.github.vipulasri.timelineview.TimelineView
@@ -21,6 +21,7 @@
         app:startLineColor="@color/colorPrimary" />
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/timeline_cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -31,35 +32,53 @@
         app:cardBackgroundColor="@color/colorGrey50"
         app:contentPadding="15dp">
 
-        <LinearLayout
+        <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            app:columnCount="2"
+            app:orientation="horizontal"
+            app:rowCount="1">
 
-            <TextView
-                android:id="@+id/timeline_textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="20dp" />
+            <LinearLayout
+                android:layout_width="245dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_gravity="center">
 
-            <TextView
-                android:id="@+id/timeline_startDateTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="TextView"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/timeline_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/timeline_locationTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="12sp" />
-        </LinearLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/timeline_startDateTextView"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="left"-->
+<!--                    android:text="TextView"-->
+<!--                    android:textSize="12sp" />-->
+
+                <TextView
+                    android:id="@+id/timeline_locationTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/job_imageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
+
+        </androidx.gridlayout.widget.GridLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

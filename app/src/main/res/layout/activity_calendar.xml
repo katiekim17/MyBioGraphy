@@ -11,7 +11,7 @@
         android:id="@+id/cal_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="#FF55A6A2"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
@@ -19,55 +19,93 @@
             android:id="@+id/calTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="캘린더" />
+            android:text="캘린더"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/changeToWeekendBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:layout_marginRight="10dp"
             android:text="주간"
+            android:textSize="20sp"
             app:backgroundTint="#FFC107" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/userNameDisp_cal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+<!--    <TextView-->
+<!--        android:id="@+id/userNameDisp_cal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
-    <!--    <com.prolificinteractive.materialcalendarview.MaterialCalendarView-->
-    <!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--        android:id="@+id/calendarView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:mcv_showOtherDates="all"-->
-    <!--        app:mcv_selectionColor="#00F"-->
-    <!--        tools:ignore="MissingConstraints" />-->
-
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:mcv_selectionColor="#FFD000"
+        app:mcv_showOtherDates="all"
+        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/dateTextView"
+<!--    <CalendarView-->
+<!--        android:id="@+id/calendarView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:layout_weight="11"
+            android:gravity="center|center_horizontal|left"
+            android:text="선택한 날짜의 일정"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/dateTextView2"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:gravity="center|center_horizontal|left"
+            android:text="선택한 날짜의 일정"
+            android:textSize="20sp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/addJobBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|fill_vertical"
+            android:layout_weight="0"
+            android:text="일정추가"
+            android:textSize="14sp"
+            app:backgroundTint="#EDC40C" />
+    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jobRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10sp"
+        android:scrollbarFadeDuration="0"
+        android:scrollbarSize="5dp"
+        android:scrollbarThumbVertical="@android:color/darker_gray"
+        android:scrollbars="vertical" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/checkTextView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_weight="0.5"-->
-<!--        android:text="아직 입력한 내용이 없습니다" />-->
-
+    <!--    <TextView-->
+    <!--        android:id="@+id/checkTextView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_weight="0.5"-->
+    <!--        android:text="아직 입력한 내용이 없습니다" />-->
 
 
 </LinearLayout>

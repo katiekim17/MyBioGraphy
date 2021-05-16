@@ -12,7 +12,7 @@
         android:id="@+id/weekend_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="#FF55A6A2"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
@@ -39,7 +39,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints"
-        tools:listitem="@layout/memorecycler_itemview" />
+        tools:listitem="@layout/memorecycler_itemview"
+        android:scrollbarFadeDuration="0"
+        android:scrollbarSize="5dp"
+        />
 
 
 </LinearLayout>

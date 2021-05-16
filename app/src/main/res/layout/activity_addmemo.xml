@@ -55,14 +55,14 @@
             android:id="@+id/editMemoTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:ems="15"
+            android:ems="13"
             android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/memoDateTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:ems="5"
+            android:ems="7"
             android:text="TextView" />
     </LinearLayout>
 

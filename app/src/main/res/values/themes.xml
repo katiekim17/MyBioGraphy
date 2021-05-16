@@ -18,6 +18,8 @@
         <item name="android:windowBackground">@drawable/splash_layout</item>
     </style>
 
+    <!--KakaoTalk-->
+
     <style name="Theme.MyBioGraphy.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
