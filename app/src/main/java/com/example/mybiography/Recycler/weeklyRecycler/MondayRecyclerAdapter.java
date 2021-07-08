@@ -1,6 +1,5 @@
 package com.example.mybiography.Recycler.weeklyRecycler;
 
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -52,7 +51,7 @@ public class MondayRecyclerAdapter extends RecyclerView.Adapter<MondayRecyclerAd
     public void onBindViewHolder(@NonNull WeeklyViewHolder holder, int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수
 //        Log.d("MondayRecyle54", ": " + position);
-        Log.d("MondayRecyle55", ": " + mData_job.get(position).jobName);
+//        Log.d("MondayRecyle55", ": " + mData_job.get(position).jobName);
         holder.mondayListTextView.setText(mData_job.get(position).jobName);
         if (!mData_job.get(position).startTime.isEmpty()) {
             holder.mondayListTextView.setText(mData_job.get(position).startTime + ", " + mData_job.get(position).jobName);

@@ -101,7 +101,10 @@ public class JobRecyclerAdapter extends RecyclerView.Adapter<JobRecyclerAdapter.
 //            setMarker(holder, R.drawable.ic_marker_inactive, R.color.material_grey_500);
         }
         String jobTitle = mData_job.get(position).jobName;
-        holder.timeline_textView.setText(mData_job.get(position).startTime+", "+jobTitle);
+        holder.timeline_textView.setText(jobTitle);
+        if(!mData_job.get(position).startTime.isEmpty()){
+            holder.timeline_textView.setText(mData_job.get(position).startTime+", "+jobTitle);
+        }
 //        holder.timeline_startDateTextView.setText(mData_job.get(position).startDate);
         holder.timeline_locationTextView.setText(mData_job.get(position).jobLocation);
         holder.job_imageView.setImageResource(mData_job.get(position).image);
@@ -115,7 +118,7 @@ public class JobRecyclerAdapter extends RecyclerView.Adapter<JobRecyclerAdapter.
 
     @Override
     public int getItemCount() {
-        Log.d("getItemCount", String.valueOf(mData_job.size()));
+//        Log.d("getItemCount", String.valueOf(mData_job.size()));
         return mData_job.size();
     }
 

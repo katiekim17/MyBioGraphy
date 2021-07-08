@@ -52,7 +52,7 @@ public class ThursdayRecyclerAdapter extends RecyclerView.Adapter<ThursdayRecycl
     public void onBindViewHolder(@NonNull WeeklyViewHolder holder, int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수
 //        Log.d("weeklyDateTextView2", ": " + position);
-        Log.d("weeklyDateTextView2", ": " + mData_job.get(position).jobName);
+//        Log.d("weeklyDateTextView2", ": " + mData_job.get(position).jobName);
         holder.thurdayListTextView.setText(mData_job.get(position).jobName);
         if(!mData_job.get(position).startTime.isEmpty()) {
             holder.thurdayListTextView.setText(mData_job.get(position).startTime + ", " + mData_job.get(position).jobName);

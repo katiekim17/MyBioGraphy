@@ -11,7 +11,7 @@
         android:id="@+id/cal_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="#FF55A6A2"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
@@ -19,44 +19,54 @@
             android:id="@+id/calTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="일정추가" />
+            android:text="일정추가"
+            android:textSize="16sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <EditText
         android:id="@+id/jobTitleEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50sp"
         android:layout_marginLeft="10sp"
-        android:layout_weight="0.5"
+        android:layout_marginRight="10sp"
+        android:layout_marginBottom="10sp"
         android:background="@null"
         android:ems="10"
         android:hint="간략한내용을 입력하세요" />
 
-    <TextView
-        android:id="@+id/cal_DateTitleTextView2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
-        android:layout_weight="0.2"
-        android:height="5dp"
-        android:gravity="left"
-        android:text="일정시작날짜" />
+        android:layout_marginRight="10sp"
+        android:weightSum="10">
 
-    <TextView
-        android:id="@+id/cal_StartDateTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_weight="0.2"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/cal_DateTitleTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:gravity="left"
+            android:text="일정시작날짜" />
+
+        <TextView
+            android:id="@+id/cal_StartDateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:hint="이곳을 눌러 시작날짜를 정하세요"
+            android:includeFontPadding="false"
+            android:paddingLeft="5sp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
         android:layout_marginTop="15sp"
-        android:layout_marginBottom="15sp"
+        android:layout_marginRight="10sp"
         android:weightSum="10">
 
         <TextView
@@ -71,15 +81,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:hint="이곳을 눌러 시간을 지정하세요" />
+            android:hint="이곳을 눌러 시간을 지정하세요"
+            android:paddingLeft="5sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginBottom="15sp"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/mapTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:text="장소" />
+
+        <TextView
+            android:id="@+id/mapBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:hint="이곳을 눌러 장소를 지정하세요"
+            android:paddingLeft="5sp" />
+    </LinearLayout>
+
+    <com.naver.maps.map.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginBottom="15sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/cal_ContentsTitleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
-        android:layout_weight="0.2"
+        android:layout_marginRight="10sp"
+        android:layout_marginBottom="10sp"
         android:text="일정내용" />
 
     <EditText
@@ -87,6 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="169dp"
         android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
         android:layout_weight="1"
         android:background="@null"
         android:ems="10"

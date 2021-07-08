@@ -14,6 +14,8 @@ public class Job implements Serializable {
     public String startTime;
     public Date endDate;
     public String jobLocation = "";
+    public Double latitude;
+    public Double longitude;
     public String jobContents = "";
     public int priority = 1;
     public int groupColor;

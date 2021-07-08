@@ -52,9 +52,9 @@ public class FridayRecyclerAdapter extends RecyclerView.Adapter<FridayRecyclerAd
     public void onBindViewHolder(@NonNull WeeklyViewHolder holder, int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수
 //        Log.d("weeklyDateTextView2", ": " + position);
-        Log.d("weeklyDateTextView2", ": " + mData_job.get(position).jobName);
+//        Log.d("weeklyDateTextView2", ": " + mData_job.get(position).jobName);
         holder.fridayListTextView.setText(mData_job.get(position).jobName);
-        Log.d("weeklyDateTextView3", ": " + String.valueOf(mData_job.get(position).startTime.isEmpty()));
+//        Log.d("weeklyDateTextView3", ": " + String.valueOf(mData_job.get(position).startTime.isEmpty()));
         if(!mData_job.get(position).startTime.isEmpty()){
             holder.fridayListTextView.setText(mData_job.get(position).startTime+", "+mData_job.get(position).jobName);
         }

@@ -93,7 +93,7 @@ public class AddmemoActivity extends AppCompatActivity {
                     builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            memo = saveMemoContents(titleStr, editMemoStr);
+                            memo = saveMemoContents("제목없음", editMemoStr);
                             goToMemoActivity(memo);
                             Toast.makeText(getApplicationContext(), "저장, 메인페이지로 이동!", Toast.LENGTH_LONG).show();
                         }

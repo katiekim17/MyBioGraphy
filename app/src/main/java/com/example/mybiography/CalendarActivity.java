@@ -117,6 +117,7 @@ public class CalendarActivity extends AppCompatActivity {
 
             Log.d("fromAddJobActivity1", String.valueOf(jobList.size()));
             Log.d("fromAddJobActivity2", String.valueOf(job.writeDate));
+            Log.d("fromAddJobActivity2", String.valueOf(job.toString()));
 
             // 새로운 일정이 있는지 확인
             isUpdateDelCheck(job);
@@ -134,7 +135,7 @@ public class CalendarActivity extends AppCompatActivity {
         //캘린더점찍기
         int size = 1;
         HashMap<CalendarDay, Integer> datesMap = new HashMap<>();
-        Log.d("fromAddJobActivity2", String.valueOf(datesMap));
+        Log.d("fromAddJobActivity138", String.valueOf(datesMap));
         for (int i = 0; i < jobList.size(); i++) {
             if (jobList.get(i).loginId.equals(loginId)) {
                 String[] time = jobList.get(i).startDate.split("/");
@@ -377,7 +378,7 @@ public class CalendarActivity extends AppCompatActivity {
         ArrayList<Job> newJobList = new ArrayList<>();
         if (jobList.size() > 0) {
             for (int i = 0; i < jobList.size(); i++) {
-//                Log.d("startDate: ", jobList.get(i).startDate);
+                Log.d("startDate: ", jobList.get(i).startDate + ", checkDate" + checkDate);
                 //날짜가 있으면 새로운 리스트에 담아서 뿌려주기
                 if (checkDate.equals(jobList.get(i).startDate) && jobList.get(i).loginId.equals(userId)) {
 //                    Log.d("isCheckedDayis Today?", "yes, " + i + ", startDate : " + jobList.get(i).startDate);

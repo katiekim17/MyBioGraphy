@@ -1,6 +1,7 @@
 package com.example.mybiography;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewHolderPage> {
     public void onBindViewHolder(ViewHolderPage holder, int position) {
         if (holder instanceof ViewHolderPage) {
             ViewHolderPage viewHolder = (ViewHolderPage) holder;
-//            Log.d("ViewPagerAdapter35", listData.get(position).jobName);
+            Log.d("ViewPagerAdapter35", listData.get(position).jobName);
             viewHolder.onBind(listData.get(position));
         }
     }

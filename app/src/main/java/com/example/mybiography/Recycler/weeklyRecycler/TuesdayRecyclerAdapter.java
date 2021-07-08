@@ -34,7 +34,7 @@ public class TuesdayRecyclerAdapter extends RecyclerView.Adapter<TuesdayRecycler
     public TuesdayRecyclerAdapter(ArrayList<Job> jobList) {
 
         if (jobList.size() > 0) {
-            Log.d("WeeklyRecyclerAdapter", ": " + jobList.get(0).jobContents);
+//            Log.d("WeeklyRecyclerAdapter", ": " + jobList.get(0).jobContents);
         }
 
         mData_job = jobList;
@@ -52,7 +52,7 @@ public class TuesdayRecyclerAdapter extends RecyclerView.Adapter<TuesdayRecycler
     public void onBindViewHolder(@NonNull WeeklyViewHolder holder, int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수
 //        Log.d("weeklyDateTextView2", ": " + position);
-        Log.d("weeklyDateTextView2", ": " + mData_job.get(position).jobName);
+//        Log.d("weeklyDateTextView2", ": " + mData_job.get(position).jobName);
         holder.tuedayListTextView.setText(mData_job.get(position).jobName);
         if (!mData_job.get(position).startTime.isEmpty()) {
             holder.tuedayListTextView.setText(mData_job.get(position).startTime + ", " + mData_job.get(position).jobName);

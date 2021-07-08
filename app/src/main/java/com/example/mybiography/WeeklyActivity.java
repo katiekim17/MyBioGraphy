@@ -1,12 +1,14 @@
 package com.example.mybiography;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,7 @@ import com.example.mybiography.Recycler.weeklyRecycler.TuesdayRecyclerAdapter;
 import com.example.mybiography.Recycler.weeklyRecycler.WednesdayRecyclerAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.lang.reflect.Type;
@@ -29,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
 
 public class WeeklyActivity extends AppCompatActivity {
@@ -37,6 +41,7 @@ public class WeeklyActivity extends AppCompatActivity {
     RecyclerView weeklyRecyclerView, sundayRecyclerView, mondayRecyclerView, tuesdayRecyclerView;
     RecyclerView wednesRecyclerView, thursdayRecyclerView, fridayRecyclerView, saturdayRecyclerView;
 
+    TextView weekendTextView; //툴바에 날짜표시
     TextView sundayTextView, mondayTextView, tuesdayTextView, wednesdayTextView;
     TextView thursdayTextView, fridayTextView, saturdayTextView;
 
@@ -55,6 +60,10 @@ public class WeeklyActivity extends AppCompatActivity {
     String loginId;
     String key = SysCodes.KeyCodes.JOBLIST.toString();
 
+    HashSet<CalendarDay> set = new HashSet(); //for Deco
+    SelectedDayDecorator selectedDayDecorator;
+    CalendarDay selectBeforeDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,29 +73,34 @@ public class WeeklyActivity extends AppCompatActivity {
 
         SharedPreferences pref = getSharedPreferences(SysCodes.KeyCodes.PREF.toString(), Activity.MODE_PRIVATE);
         loginId = pref.getString(SysCodes.KeyCodes.LOGIN_ID.toString(), "저장된 아이디 없음");
-        Log.d("CalActivity_loginId: ", loginId);
+//        Log.d("CalActivity_loginId: ", loginId);
 
         //쉐어드프리퍼런스 불러오기 -> jobList에 일단 넣어주기
         SharedPreferences jobListPref = getSharedPreferences(key, Activity.MODE_PRIVATE); //"jobList"
         String jobListStr = jobListPref.getString(key, "No saved data");
-        Log.d("WeeklyActivity", "jobListJson? " + jobListStr.toString());
+//        Log.d("WeeklyActivity", "jobListJson? " + jobListStr.toString());
         Gson gson = new Gson();
         if (!jobListStr.equals("No saved data")) {
             Type type = new TypeToken<ArrayList<Job>>() {
             }.getType();
             jobList = gson.fromJson(jobListStr, type);
 
-            for (int i = 0; i < jobList.size(); i++){
-                 if(jobList.get(i).loginId.equals(loginId)){
-                     Log.d("WeeklyActivity78", "jobList.loginId? " + jobList.get(i).loginId + ", loginId: " + loginId);
-                     newjobListById.add(jobList.get(i));
-                 }
-                Log.d("WeeklyActivity78", "newjobListById? " + jobList.get(i));
+            for (int i = 0; i < jobList.size(); i++) {
+                if (jobList.get(i).loginId.equals(loginId)) {
+//                     Log.d("WeeklyActivity78", "jobList.loginId? " + jobList.get(i).loginId + ", loginId: " + loginId);
+                    newjobListById.add(jobList.get(i));
+                }
+//                Log.d("WeeklyActivity78", "newjobListById? " + jobList.get(i));
             }
             //다시 새로 넣기
             jobList = newjobListById;
 
         }
+
+        weekendTextView = findViewById(R.id.weekendTextView);
+
+        // 오늘날짜 표기
+        calendarView_weekly = findViewById(R.id.calendarView_Weekly);
 
         sundayTextView = findViewById(R.id.sundayTextView);
         mondayTextView = findViewById(R.id.mondayTextView);
@@ -107,31 +121,49 @@ public class WeeklyActivity extends AppCompatActivity {
             }
         });
 
-
         //캘린더 시작시 해당날짜의 입력된 내용 보여주기
         Calendar calendar = Calendar.getInstance(); //오늘날짜
         mYear = calendar.get(Calendar.YEAR);
-        mMonth = calendar.get(Calendar.MONTH);
+        mMonth = calendar.get(Calendar.MONTH) + 1;
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
 //        weeklyDateTextView.setText(String.format("%d/%d/%d", mYear, mMonth + 1, mDay));
 
         int day = calendar.get(Calendar.DAY_OF_WEEK); //요일구하기
-        
+
+//        String today = String.format("%d/%d/%d", mYear, mMonth+1, mDay);
+//        Log.d("callCalDialog", today);
+        weekendTextView.setText(mYear + "." + mMonth + " V");
+
+        weekendTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callCalDialog();
+            }
+        });
+
+        Log.d("callCalDialog134", mYear + ", " + mMonth + ", " + mDay);
         //달력 꾸미기
         calendarDeco();
 
-        setDataListItems();
+//        setDataListItems();
 
+        dispWeekly(calendar);
+
+
+    }
+
+    private void dispWeekly(Calendar calendar) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm a"); //Date and time
-        String currentDate = sdf.format(calendar.getTime());
+//        String currentDate = sdf.format(calendar.getTime());
 
         //Day of Name in full form like,"Saturday", or if you need the first three characters you have to put "EEE" in the date format and your result will be "Sat".
         SimpleDateFormat sdf_ = new SimpleDateFormat("EEEE", Locale.KOREA);
+        Log.d("callCalDialog145", mYear + ", " + mMonth + ", " + mDay);
         Date date = calendar.getTime();
         String dayName = sdf_.format(date);
 
         //선택한 날짜의 요일구하기
-        //선택한 날짜의 시작 요일구하기기
+        //선택한 날짜의 시작 요일구하기 Sunday
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY); //일요일
         Date date1 = calendar.getTime();
         sdf = new SimpleDateFormat("dd", Locale.getDefault());
@@ -166,7 +198,6 @@ public class WeeklyActivity extends AppCompatActivity {
         String monDate = sdf2.format(date1);
         mondayTextView.setText(sdf.format(date1) + ", " + dayName);
         initMondayRecyclerView(setNewWeeklyJob(jobList, monDate));
-
 
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
         date1 = calendar.getTime();
@@ -232,10 +263,63 @@ public class WeeklyActivity extends AppCompatActivity {
     }
 
     private void calendarDeco() {
-        // 오늘날짜 표기
-        calendarView_weekly = findViewById(R.id.calendarView_Weekly);
         // 오늘꾸미기
         calendarView_weekly.addDecorators(new OneDayDecorator());
+    }
+
+    private void selectedCalendarDeco(CalendarDay calendarDay) {
+        Log.d("callCalDialog270", set.toString());
+        Log.d("callCalDialog271", calendarDay.toString());
+        Log.d("callCalDialog273", "selectBeforeDate: " + selectBeforeDate);
+        if (set.contains(selectBeforeDate)) {
+            Log.d("callCalDialog284", "여기?");
+            removeDeco(selectBeforeDate);
+        }
+        set.add(calendarDay);
+        selectBeforeDate = calendarDay;
+        // 선택한 날짜꾸미기
+        calendarView_weekly.clearSelection(); //같은 날짜 선택 방지
+        selectedDayDecorator = new SelectedDayDecorator(calendarDay);
+        calendarView_weekly.addDecorators(selectedDayDecorator);
+        Log.d("callCalDialog281", set.toString());
+        Log.d("callCalDialog299", "selectBeforeDate: " + selectBeforeDate);
+
+    }
+
+    private void removeDeco(CalendarDay selectBeforeDate) {
+        calendarView_weekly.removeDecorator(selectedDayDecorator);
+        calendarView_weekly.invalidateDecorators();
+        set.remove(selectedDayDecorator);
+        Log.d("callCalDialog291", set.toString());
+    }
+
+    private void callCalDialog() {
+//        Log.d("callCalDialog259", mYear + ", " + mMonth + ", " + mDay);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(WeeklyActivity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                mYear = year;
+                mMonth = month + 1;
+                mDay = dayOfMonth;
+//                Log.d("callCalDialog267", mYear + ", " + mMonth + ", " + mDay);
+                weekendTextView.setText(mYear + "." + mMonth + " V");
+                changeDate(mYear, mMonth, mDay);
+            }
+        }, mYear, mMonth - 1, mDay);
+        datePickerDialog.show();
+    }
+
+    private void changeDate(int mYear, int mMonth, int mDay) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(mYear, mMonth - 1, mDay);
+//        Log.d("callCalDialog279", cal.getTime().toString());
+//        Log.d("callCalDialog267", mYear + ", " + mMonth + ", " + mDay);
+        CalendarDay calendarDay = CalendarDay.from(mYear, mMonth, mDay);
+        calendarView_weekly.setCurrentDate(calendarDay);
+
+        selectedCalendarDeco(calendarDay);
+        dispWeekly(cal);
     }
 
     private void setDataListItems() {
